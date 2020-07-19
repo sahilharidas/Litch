@@ -14,6 +14,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatSortModule } from '@angular/material/sort';
+import { GraphsComponent } from './pages/graphs/graphs.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
     DataViewerComponent,
     SimulationComponent,
     SimulatorComponent,
+    GraphsComponent,
   ],
   imports: [
     BrowserModule,

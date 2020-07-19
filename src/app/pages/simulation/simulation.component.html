@@ -48,15 +48,14 @@
 
 <div style="display: flex; justify-content: center;">
     <nb-card status="basic" class="sim">
-        <nb-card-header class="h4">A grid of people</nb-card-header>
+        <nb-card-header class="h4">Time</nb-card-header>
         <nb-card-body>
             <p class="p-card">
-                We're going to build our model up slowly, one piece at a time.
+                Now lets incorporate time into our model
             </p>
             <p class="p-card">
-                The first thing a disease needs is a population, i.e., the set of people who can
-                potentially catch the disease. Ours will live in neat rows and columns, like the
-                9x9 grid you see here:
+                The "Step" button (below) moves the simulation forward 1 day per click.
+                Or you can press the "Play" button to watch things happen on their own:
             </p>
 
             <table class="pad-up pad-down">
@@ -75,8 +74,8 @@
             </div>
 
             <p class="p-card">
-                Each square represents a single person. The poor soul at the center, as you may
-                have guessed, is Infected. Meanwhile, everyone else is Susceptible.
+                Oh no. It looks like everyone sneezed on their immediate neighbors —
+                north, east, south, west — and the whole world got sick.
             </p>
         </nb-card-body>
     </nb-card>
