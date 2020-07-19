@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Global, Country } from './model';
-import { Day } from './model';
+import { Global, Country, History } from './model';
 import { DataService } from 'src/app/data.service';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { Chart } from 'chart.js';
+import { time } from 'console';
 
 @Component({
   selector: 'app-data-viewer',
@@ -13,7 +13,13 @@ import { Chart } from 'chart.js';
 })
 export class DataViewerComponent implements OnInit {
     
-  days: Day[];
+  globeHistory: History;
+  globeHistX: Array<string> = [];
+  globeHistY: Array<number> = [];
+  globeDeathsY: Array<number> = [];
+  globeRecoveredY: Array<number> = [];
+  skip: boolean;
+
   global: Global;
   countries: Country[];
   displayedColumns: string[] = ['country', 'cases', 'todayCases', 'deaths', 'todayDeaths',
@@ -27,25 +33,201 @@ export class DataViewerComponent implements OnInit {
 
   ngOnInit() {
 
-    // var ctx = document.getElementById('myChart');
-    // var myChart = new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    //         datasets: [{
-    //             // label: '# of Votes',
-    //             data: [1, 2, 3, 2, 2, 3],
-    //             backgroundColor: 
-    //                 'rgba(255, 159, 64, 0.2)',
-    //             borderColor: 
-    //                 'rgba(255, 159, 64, 1)',
-    //             borderWidth: 1
-    //         }]
-    //     }
-    // });
-    
-    var coos = this.dataService.getDays()
-    .subscribe(data => this.days = data);
+    this.dataService.getGlobalHistory()
+    .subscribe(data => {
+        this.skip = false;
+        for (let d in data.cases) {
+            if (!this.skip) {
+                this.globeHistX.push(d);
+                this.globeHistY.push(data.cases[d] as number);
+                this.globeDeathsY.push(data.deaths[d] as number);
+                this.globeRecoveredY.push(data.recovered[d] as number);
+            }
+            this.skip == true ? this.skip = false  : this.skip = true;
+        }
+        
+        var ctx = document.getElementById('dailyCasesGlobalLine');
+        var dailyCasesGlobal  = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: this.globeHistX,
+                datasets: [{
+                    data: this.globeHistY,
+                    backgroundColor: 
+                        'rgba(0, 149, 255, 0.2)',
+                    borderColor:
+                        'rgba(0, 149, 255, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                legend: {
+                   display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });   
+        
+        var ctx = document.getElementById('dailyCasesGlobalLog');
+        var dailyCasesGlobal  = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: this.globeHistX,
+                datasets: [{
+                    data: this.globeHistY,
+                    backgroundColor: 
+                        'rgba(0, 149, 255, 0.2)',
+                    borderColor:
+                        'rgba(0, 149, 255, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                legend: {
+                   display: false
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'logarithmic',
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value, index, values) {
+                                return Number(value.toString());
+                            }, 
+                        }
+                    }]
+                }
+            }
+        });   
+        
+        var ctx = document.getElementById('dailyDeathsGlobalLine');
+        var dailyDeathsGlobalLine  = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: this.globeHistX,
+                datasets: [{
+                    data: this.globeDeathsY,
+                    backgroundColor: 
+                        'rgba(255, 61, 113, 0.2)',
+                    borderColor:
+                        'rgba(255, 61, 113, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                legend: {
+                   display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });   
+        
+        var ctx = document.getElementById('dailyDeathsGlobalLog');
+        var dailyDeathsGlobalLog  = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: this.globeHistX,
+                datasets: [{
+                    data: this.globeDeathsY,
+                    backgroundColor: 
+                        'rgba(255, 61, 113, 0.2)',
+                    borderColor:
+                        'rgba(255, 61, 113, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                legend: {
+                   display: false
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'logarithmic',
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value, index, values) {
+                                return Number(value.toString());
+                            }, 
+                        }
+                    }]
+                }
+            }
+        });      
+        
+        var ctx = document.getElementById('dailyRecoveredGlobalLine');
+        var dailyRecoveredGlobalLine  = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: this.globeHistX,
+                datasets: [{
+                    data: this.globeRecoveredY,
+                    backgroundColor: 
+                        'rgba(0, 214, 143, 0.2)',
+                    borderColor:
+                        'rgba(0, 214, 143, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                legend: {
+                   display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });   
+        
+        var ctx = document.getElementById('dailyRecoveredGlobalLog');
+        var dailyRecoveredGlobalLog  = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: this.globeHistX,
+                datasets: [{
+                    data: this.globeRecoveredY,
+                    backgroundColor: 
+                        'rgba(0, 214, 143, 0.2)',
+                    borderColor:
+                        'rgba(0, 214, 143, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                legend: {
+                   display: false
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'logarithmic',
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value, index, values) {
+                                return Number(value.toString());
+                            }, 
+                        }
+                    }]
+                }
+            }
+        });   
+    }); 
+
+
     
     this.dataSource.sort = this.sort;
     var doos = this.dataService.getCountries()
@@ -57,7 +239,7 @@ export class DataViewerComponent implements OnInit {
     .subscribe(data => this.global = data);
 
 
-    return { coos, doos, goos};
+    return { doos, goos};
   }
 
 }

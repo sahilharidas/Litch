@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export class Country {
 
     country: string
@@ -31,9 +33,9 @@ export class Global {
 }
 
 export class History {
-    cases: number;
-    deaths: number;
-    recovered: number;
+    cases: Object;
+    deaths: Object;
+    recovered: Object;
 }
 
 export class Day {

@@ -79,20 +79,72 @@
     </nb-card>
 </div>
 
-<div class="pad-up" style="display: flex; justify-content: center;">
-    <nb-card class="act" status="primary">
-        <nb-card-header class="h4">Cases Per day</nb-card-header>
-        <nb-card-body>
-            <div><canvas id="dailyCases"></canvas></div>
-        </nb-card-body>
-    </nb-card>
-    <nb-card class="act" status="primary">
+
+<mat-divider class="pad-up"></mat-divider>
+<div class="center"><h6>Graphs can be viewed as Linear or Logarithmic</h6></div>
+
+<div class="pad-up" >
+<!-- style="display: flex; justify-content: center;"> -->
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cases per Day - Linear</nb-card-header>
+                <nb-card-body>
+                    <div><canvas id="dailyCasesGlobalLine"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cases per Day - Logarithmic</nb-card-header>
+                <nb-card-body>
+                    <div><canvas id="dailyCasesGlobalLog"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Deaths per Day - Linear</nb-card-header>
+                <nb-card-body>
+                    <div><canvas id="dailyDeathsGlobalLine"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Deaths per Day - Logarithmic</nb-card-header>
+                <nb-card-body>
+                    <div><canvas id="dailyDeathsGlobalLog"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Recoveries per Day - Linear</nb-card-header>
+                <nb-card-body>
+                    <div><canvas id="dailyRecoveredGlobalLine"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Recoveries per Day - Logarithmic</nb-card-header>
+                <nb-card-body>
+                    <div><canvas id="dailyRecoveredGlobalLog"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+    <!-- <nb-card class="act" status="primary">
         <nb-card-header class="h4">Deaths per day</nb-card-header>
         <nb-card-body>
-            <!-- <div><canvas id="myChart"></canvas></div> -->
-            In progress
+            <div><canvas id="dailyDeathsGlobal"></canvas></div>
         </nb-card-body>
-    </nb-card>
+    </nb-card> -->
 </div>
 
 <mat-divider class="pad-up"></mat-divider>
@@ -115,7 +167,7 @@
     </ng-container>
   
     <ng-container matColumnDef="cases">
-        <th mat-header-cell  *matHeaderCellDef mat-sort-header class="cell-info"> Total Cases </th>
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Total Cases </th>
         <td mat-cell *matCellDef="let element" class="cell-info"> {{element.cases | number}} </td>
     </ng-container>
   
@@ -125,7 +177,7 @@
     </ng-container>
   
     <ng-container matColumnDef="deaths">
-        <th mat-header-cell  *matHeaderCellDef mat-sort-header class="cell-danger"> Deaths </th>
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Deaths </th>
         <td mat-cell *matCellDef="let element" class="cell-danger"> {{element.deaths | number}} </td>
     </ng-container>
 
@@ -135,7 +187,7 @@
     </ng-container>
   
     <ng-container matColumnDef="recovered">
-        <th mat-header-cell  *matHeaderCellDef mat-sort-header class="cell-success"> Recoveries </th>
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Recoveries </th>
         <td mat-cell *matCellDef="let element" class="cell-success"> {{element.recovered | number}} </td>
     </ng-container>
   
