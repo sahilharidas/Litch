@@ -1,0 +1,86 @@
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.mat-sort-header-container {
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.stat {
+    display: flex;
+    text-align: center;
+    width: 25%;
+    margin: 2%;
+    justify-content: center;
+}
+
+.act {
+    display: flex;
+    text-align: center;
+    width: 40%;
+    margin: 2%;
+    justify-content: center;
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    background-color: rgb(230, 230, 230);
+}
+
+.info {
+    color: #0095ff;
+}
+
+.danger {
+    color: #ff3d71;
+}
+
+.success {
+    color: hsl(160, 100%, 42%);
+}
+
+.cell {
+    text-decoration: #f2f6ff;
+    background-color: #091c7a;
+    text-align: center;
+}
+
+.cell-info {
+    background-color: #0095ff;
+}
+
+.cell-danger{
+    background-color: #ff3d71;
+}
+
+.cell-success{
+    background-color: #00d68f;
+}
+
+.pad-up {
+    margin-top: 20px;
+}
+
+.parallax {
+    background-image: url("../../../assets/img/corona.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.chart {
+    width: 40%;
+}

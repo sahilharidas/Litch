@@ -1,0 +1,83 @@
+<nb-card>
+    <nb-card-header>PLAYABLE SIMULATION</nb-card-header>
+</nb-card>
+
+<div class="center"><p>This is a simulation of a disease outbreak in which you'll get to tweak parameters
+    (like transmission and mortality rates) and watch how the epidemic unfolds.
+    By the end of this article, I hope you'll have a better understanding, and perhaps better
+    intuition, for what it takes to contain this thing. But first!...
+</p></div>
+<div class="center"><p>
+    This is not an attempt to model COVID-19. What follows is a simplified model of a disease
+    process. The goal is to learn how epidemics unfold in general.
+</p></div>
+<div class="center"><p>
+    Let's do this!
+</p></div>
+
+<mat-divider class="pad-up"></mat-divider>
+
+<div style="display: flex; justify-content: center;">
+    <nb-card status="basic" class="sim">
+        <nb-card-header class="h4">A grid of people</nb-card-header>
+        <nb-card-body>
+            <p class="p-card">
+                We're going to build our model up slowly, one piece at a time.
+            </p>
+            <p class="p-card">
+                The first thing a disease needs is a population, i.e., the set of people who can
+                potentially catch the disease. Ours will live in neat rows and columns, like the
+                9x9 grid you see here:
+            </p>
+
+            <table class="pad-up pad-down">
+                <tr ng-repeat="row in rows">
+                    <td ng-repeat="col in cols">
+
+                    </td>
+                </tr>
+            </table>
+
+            <p class="p-card">
+                Each square represents a single person. The poor soul at the center, as you may
+                have guessed, is Infected. Meanwhile, everyone else is Susceptible.
+            </p>
+        </nb-card-body>
+    </nb-card>
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <nb-card status="basic" class="sim">
+        <nb-card-header class="h4">A grid of people</nb-card-header>
+        <nb-card-body>
+            <p class="p-card">
+                We're going to build our model up slowly, one piece at a time.
+            </p>
+            <p class="p-card">
+                The first thing a disease needs is a population, i.e., the set of people who can
+                potentially catch the disease. Ours will live in neat rows and columns, like the
+                9x9 grid you see here:
+            </p>
+
+            <table class="pad-up pad-down">
+                <tr ng-repeat="row in rows">
+                    <td ng-repeat="col in cols">
+
+                    </td>
+                </tr>
+            </table>
+            <div class="pad-down">
+                <button nbButton shape="semi-round" status="info" size="small" (click)="reset()">Reset</button>
+                &nbsp;
+                <button nbButton shape="semi-round" status="info" size="small" (click)="play()">Play</button>
+                &nbsp;
+                <button nbButton shape="semi-round" status="info" size="small" (click)="step()">Step</button>
+            </div>
+
+            <p class="p-card">
+                Each square represents a single person. The poor soul at the center, as you may
+                have guessed, is Infected. Meanwhile, everyone else is Susceptible.
+            </p>
+        </nb-card-body>
+    </nb-card>
+</div>

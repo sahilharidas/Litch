@@ -1,0 +1,180 @@
+<nb-card>
+    <nb-card-header>COVID19 PANDEMIC</nb-card-header>
+</nb-card>
+
+<div class="center"><h6>Last Updated: {{ global.updated | date:'MMM dd, yyyy HH:mm (Z)' }}</h6></div>
+
+<div class="center">
+    <!-- <div class="card" style="width: 18rem;">
+        <div class="card-body center">
+            <h2 class="card-title">Total COVID19 Cases</h2>
+            <h1 class="card-text">{{ global.cases }}</h1>
+            <h2 class="card-title">New Cases</h2>
+            <h1 class="card-text">{{ global.todayCases }}</h1>
+            <a href="#" class="card-link">View by Country</a>
+        </div>
+    </div> -->
+    <!-- <mat-card class="stat center">
+        <mat-card-header>
+            <mat-card-title><h2>Total COVID19 Cases</h2></mat-card-title>
+            <mat-card-subtitle style="color: #0099ff;"><h1>{{ global.cases | number }}</h1></mat-card-subtitle>
+            <mat-card-title><h2>New Cases</h2></mat-card-title>
+            <mat-card-subtitle style="color: #0099ff;"><h1>{{ global.todayCases | number  }}</h1></mat-card-subtitle>
+        </mat-card-header>
+    </mat-card> -->
+    <nb-card accent="info" class="stat">
+        <nb-card-header>
+            <h2>Total Cases</h2>
+            <h1 class="info">{{ global.cases | number }}</h1>
+            <h2 class="pad-up">New Cases</h2>
+            <h1 class="info">{{ global.todayCases | number }}</h1>
+        </nb-card-header>
+    </nb-card>
+    <nb-card accent="danger" class="stat">
+        <nb-card-header>
+            <h2>Total Deaths</h2>
+            <h1 class="danger">{{ global.deaths | number }}</h1>
+            <h2 class="pad-up">New Deaths</h2>
+            <h1 class="danger">{{ global.todayDeaths | number }}</h1>
+        </nb-card-header>
+    </nb-card>
+    <nb-card accent="success" class="stat">
+        <nb-card-header>
+            <h2>Total Recovered</h2>
+            <h1 class="success">{{ global.recovered | number }}</h1>
+            <h2 class="pad-up">New Recoveries</h2>
+            <h1 class="success">{{ global.todayRecovered | number }}</h1>
+        </nb-card-header>
+    </nb-card>
+</div>
+
+<mat-divider class="pad-up"></mat-divider>
+<div class="center"><h6>{{ global.tests | number }} tests done globally</h6></div>
+<div class="center"><h6>{{ global.affectedCountries }} countries affected</h6></div>
+
+<div class="pad-up" style="display: flex; justify-content: center;">
+    <nb-card class="act" status="primary">
+        <nb-card-header class="h4">ACTIVE CASES</nb-card-header>
+        <nb-card-body>
+            <h3>{{ global.active | number }}</h3>
+            <p>Currently Infected</p>
+            <br>
+            <h3 class="info">{{ global.active - global.critical | number}}</h3>
+            <p>in Mild Condition</p>
+            <h3 class="danger">{{ global.critical | number}}</h3>
+            <p>in Critical Condition</p>
+        </nb-card-body>
+    </nb-card>
+    <nb-card class="act" status="primary">
+        <nb-card-header class="h4">CRITICAL CASES</nb-card-header>
+        <nb-card-body>
+            <h3>{{ global.cases - global.active | number }}</h3>
+            <p>Cases which had an outcome</p>
+            <br>
+            <h3 class="success">{{ global.recovered | number }}</h3>
+            <p>Recovered / Discharged</p>
+            <h3 class="danger">{{ global.deaths  | number}}</h3>
+            <p>Deaths</p>
+        </nb-card-body>
+    </nb-card>
+</div>
+
+<div class="pad-up" style="display: flex; justify-content: center;">
+    <nb-card class="act" status="primary">
+        <nb-card-header class="h4">Cases Per day</nb-card-header>
+        <nb-card-body>
+            <div><canvas id="dailyCases"></canvas></div>
+        </nb-card-body>
+    </nb-card>
+    <nb-card class="act" status="primary">
+        <nb-card-header class="h4">Deaths per day</nb-card-header>
+        <nb-card-body>
+            <!-- <div><canvas id="myChart"></canvas></div> -->
+            In progress
+        </nb-card-body>
+    </nb-card>
+</div>
+
+<mat-divider class="pad-up"></mat-divider>
+
+<mat-divider></mat-divider>
+<div class="parallax"></div>
+<mat-divider></mat-divider>
+
+<p class="pad-up subtitle">Click on a column heading to sort by that column!</p>
+
+<table mat-table [dataSource]="dataSource" matSort matSortStart="desc" matSortActive="cases"
+        matSortDirection="desc" matSortDisableClear class="mat-elevation-z8 subtitle">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <ng-container matColumnDef="country">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Country </th>
+        <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="cases">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header class="cell-info"> Total Cases </th>
+        <td mat-cell *matCellDef="let element" class="cell-info"> {{element.cases | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="todayCases">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> New Cases </th>
+        <td mat-cell *matCellDef="let element"> {{element.todayCases | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="deaths">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header class="cell-danger"> Deaths </th>
+        <td mat-cell *matCellDef="let element" class="cell-danger"> {{element.deaths | number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="todayDeaths">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> New Deaths </th>
+        <td mat-cell *matCellDef="let element"> {{element.todayDeaths | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="recovered">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header class="cell-success"> Recoveries </th>
+        <td mat-cell *matCellDef="let element" class="cell-success"> {{element.recovered | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="todayRecovered">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> New Recoveries </th>
+        <td mat-cell *matCellDef="let element"> {{element.todayRecovered | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="tests">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Tests </th>
+        <td mat-cell *matCellDef="let element"> {{element.tests | number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Active </th>
+        <td mat-cell *matCellDef="let element"> {{element.active | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="critical">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Critical </th>
+        <td mat-cell *matCellDef="let element"> {{element.critical | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="casesPerOneMillion">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Cases/M </th>
+        <td mat-cell *matCellDef="let element"> {{element.casesPerOneMillion | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="deathsPerOneMillion">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Deaths/M </th>
+        <td mat-cell *matCellDef="let element"> {{element.deathsPerOneMillion | number}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="testsPerOneMillion">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Tests/M </th>
+        <td mat-cell *matCellDef="let element"> {{element.testsPerOneMillion | number}} </td>
+    </ng-container>
+    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

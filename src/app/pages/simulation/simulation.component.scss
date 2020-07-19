@@ -1,0 +1,51 @@
+p {
+    font-size: 20px;
+    line-height: 24px;
+    width: 75%;
+}
+
+.p-card {
+    text-align: left;
+    width: 100%;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.pad-up {
+    margin-top: 25px;
+}
+
+.pad-down {
+    margin-bottom: 25px;
+}
+
+.sim {
+    display: flex;
+    text-align: center;
+    width: 75%;
+    justify-content: center;
+}
+
+table th td {
+    border: 1px #f2f6ff;
+    border-collapse: collapse;
+}
+
+table {
+    margin: auto;
+    background-color: #94cbff;
+}
+
+td {
+    width: 30px;
+    height: 30px;
+}
+
+.active {background-color: orange;}
+.dead {background-color: #ff3d71;}
+.recovered {background-color: green;}
+
+// sick #ff3d71
