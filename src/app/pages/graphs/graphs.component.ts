@@ -46,7 +46,7 @@ export class GraphsComponent implements OnInit {
             this.skip == true ? this.skip = false  : this.skip = true;
         }
         
-        var ctx = document.getElementById('dailyCasesGlobalLine');
+        var ctx = document.getElementById('cumCasesGlobalLine');
         var dailyCasesGlobal  = new Chart(ctx, {
             type: 'line',
             data: {
@@ -76,7 +76,7 @@ export class GraphsComponent implements OnInit {
         
       
         
-        var ctx = document.getElementById('dailyDeathsGlobalLine');
+        var ctx = document.getElementById('cumDeathsGlobalLine');
         var dailyDeathsGlobalLine  = new Chart(ctx, {
             type: 'line',
             data: {
@@ -104,7 +104,7 @@ export class GraphsComponent implements OnInit {
             }
         });    
         
-        var ctx = document.getElementById('dailyRecoveredGlobalLine');
+        var ctx = document.getElementById('cumRecoveredGlobalLine');
         var dailyRecoveredGlobalLine  = new Chart(ctx, {
             type: 'line',
             data: {
@@ -132,9 +132,9 @@ export class GraphsComponent implements OnInit {
             }
         });   
         
-        var ctx = document.getElementById('cumCasesGlobalLine');
+        var ctx = document.getElementById('dailyCasesGlobalLine');
         var dailyCasesGlobal  = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: this.globeHistX,
                 datasets: [{
@@ -162,9 +162,9 @@ export class GraphsComponent implements OnInit {
         
       
         
-        var ctx = document.getElementById('cumDeathsGlobalLine');
+        var ctx = document.getElementById('dailyDeathsGlobalLine');
         var dailyDeathsGlobalLine  = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: this.globeHistX,
                 datasets: [{
@@ -190,9 +190,9 @@ export class GraphsComponent implements OnInit {
             }
         });    
         
-        var ctx = document.getElementById('cumRecoveredGlobalLine');
+        var ctx = document.getElementById('dailyRecoveredGlobalLine');
         var dailyRecoveredGlobalLine  = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: this.globeHistX,
                 datasets: [{
@@ -219,6 +219,12 @@ export class GraphsComponent implements OnInit {
         });   
         
     }); 
+
+    this.graphCountries();
+  }
+
+  graphCountries(): void {
+
   }
 
 }

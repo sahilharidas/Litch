@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Global, Country, History } from './pages/data-viewer/model';
+import { Global, Country, History, CountryHistory } from './pages/data-viewer/model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  dailyUrl = 'https://api.covid19api.com/total/dayone/country/south-africa';
-  liveUrl = 'https://api.covid19api.com/live/country/south-africa/status/confirmed';
-  apiUrl = 'https://api.covid19api.com/summary';
-
   countriesURL = 'https://corona.lmao.ninja/v3/covid-19/countries'
+  countriesHistoryURL = 'https://corona.lmao.ninja/v3/covid-19/historical/'
   globalURL = 'https://corona.lmao.ninja/v3/covid-19/all'
   globalHistoryURL = "https://corona.lmao.ninja/v3/covid-19/historical/all?lastdays=all"
 
@@ -20,15 +17,15 @@ export class DataService {
     return this._http.get<Country[]>(this.countriesURL);
   }
 
+  getCountriesHistory(country: string) {
+    return this._http.get<CountryHistory>(this.countriesHistoryURL + country + '?lastdays=all');
+  }
+
   getGlobal() {
     return this._http.get<Global>(this.globalURL);
   }
 
   getGlobalHistory() {
     return this._http.get<History>(this.globalHistoryURL);
-  }
-
-  getGlobalHist() {
-    return this._http.get(this.globalHistoryURL);
   }
 }

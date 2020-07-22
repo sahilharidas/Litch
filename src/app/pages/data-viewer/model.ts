@@ -1,6 +1,8 @@
 export class Country {
 
+    updated: string;
     country: string
+    countryInfo: CountryInfo;
     cases: number;
     todayCases: number;
     deaths: number;
@@ -34,4 +36,13 @@ export class History {
     cases: Object;
     deaths: Object;
     recovered: Object;
+}
+
+export class CountryHistory {
+    country: string;
+    timeline: History;
+}
+
+export class CountryInfo {
+    flag: string;
 }

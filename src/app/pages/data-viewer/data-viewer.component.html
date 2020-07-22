@@ -66,7 +66,7 @@
         </nb-card-body>
     </nb-card>
     <nb-card class="act" status="primary">
-        <nb-card-header class="h4">CRITICAL CASES</nb-card-header>
+        <nb-card-header class="h4">CLOSED CASES</nb-card-header>
         <nb-card-body>
             <h3>{{ global.cases - global.active | number }}</h3>
             <p>Cases which had an outcome</p>
@@ -82,6 +82,7 @@
 
 <mat-divider class="pad-up"></mat-divider>
 <div class="center"><h6>Graphs can be viewed as Linear or Logarithmic</h6></div>
+<div class="center"><h6>Try hovering over points to see exact values</h6></div>
 
 <div class="pad-up" >
 <!-- style="display: flex; justify-content: center;"> -->
@@ -156,7 +157,7 @@
 <p class="pad-up subtitle">Click on a column heading to sort by that column!</p>
 
 <table mat-table [dataSource]="dataSource" matSort matSortStart="desc" matSortActive="cases"
-        matSortDirection="desc" matSortDisableClear class="mat-elevation-z8 subtitle">
+        matSortDirection="desc" matSortDisableClear class="mat-elevation-z8 subtitle cell">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

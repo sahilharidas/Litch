@@ -1,0 +1,147 @@
+<nb-card>
+    <nb-card-header><img src="{{ selectedCountry.countryInfo.flag }}"
+        alt="flag" id="flag-img"> &nbsp; {{ selectedCountry.country | uppercase}} DATA
+    </nb-card-header>
+</nb-card>
+
+<nb-card >
+    <nb-card-body>
+        Change Country &nbsp;
+        <input #autoInput
+        nbInput
+        type="text"
+        (input)="onChange()"
+        placeholder="Enter value"
+        [nbAutocomplete]="auto" />
+
+        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+        <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+            {{ option }}
+        </nb-option>
+
+        </nb-autocomplete>
+        &nbsp;&nbsp;
+        Try typing 'USA' or 'UK'
+    </nb-card-body>
+</nb-card>
+
+<div class="center"><h6>Last Updated: {{ selectedCountry.updated | date:'MMM dd, yyyy HH:mm (Z)' }}</h6></div>
+
+<div class="center">
+    <nb-card accent="info" class="stat">
+        <nb-card-header>
+            <h2>Total Cases</h2>
+            <h1 class="info">{{ selectedCountry.cases | number }}</h1>
+            <h2 class="pad-up">New Cases</h2>
+            <h1 class="info">{{ selectedCountry.todayCases | number }}</h1>
+        </nb-card-header>
+    </nb-card>
+    <nb-card accent="danger" class="stat">
+        <nb-card-header>
+            <h2>Total Deaths</h2>
+            <h1 class="danger">{{ selectedCountry.deaths | number }}</h1>
+            <h2 class="pad-up">New Deaths</h2>
+            <h1 class="danger">{{ selectedCountry.todayDeaths | number }}</h1>
+        </nb-card-header>
+    </nb-card>
+    <nb-card accent="success" class="stat">
+        <nb-card-header>
+            <h2>Total Recovered</h2>
+            <h1 class="success">{{ selectedCountry.recovered | number }}</h1>
+            <h2 class="pad-up">New Recoveries</h2>
+            <h1 class="success">{{ selectedCountry.todayRecovered | number }}</h1>
+        </nb-card-header>
+    </nb-card>
+</div>
+
+<mat-divider class="pad-up"></mat-divider>
+<div class="center"><h6>{{ selectedCountry.tests | number }} tests done in {{ selectedCountry.country }}</h6></div>
+
+<div class="pad-up" style="display: flex; justify-content: center;">
+    <nb-card class="act" status="primary">
+        <nb-card-header class="h4">ACTIVE CASES</nb-card-header>
+        <nb-card-body>
+            <h3>{{ selectedCountry.active | number }}</h3>
+            <p>Currently Infected</p>
+            <br>
+            <h3 class="info">{{ selectedCountry.active - selectedCountry.critical | number}}</h3>
+            <p>in Mild Condition</p>
+            <h3 class="danger">{{ selectedCountry.critical | number}}</h3>
+            <p>in Critical Condition</p>
+        </nb-card-body>
+    </nb-card>
+    <nb-card class="act" status="primary">
+        <nb-card-header class="h4">CLOSED CASES</nb-card-header>
+        <nb-card-body>
+            <h3>{{ selectedCountry.cases - selectedCountry.active | number }}</h3>
+            <p>Cases which had an outcome</p>
+            <br>
+            <h3 class="success">{{ selectedCountry.recovered | number }}</h3>
+            <p>Recovered / Discharged</p>
+            <h3 class="danger">{{ selectedCountry.deaths  | number}}</h3>
+            <p>Deaths</p>
+        </nb-card-body>
+    </nb-card>
+</div>
+
+<mat-divider class="pad-up"></mat-divider>
+<div class="center"><h6>Graphs can be viewed as Linear or Logarithmic</h6></div>
+<div class="center"><h6>Try hovering over points to see exact values</h6></div>
+
+<div class="pad-up" >
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cumulative Cases - Linear</nb-card-header>
+                <nb-card-body id="dailyCasesLine-container">
+                    <div><canvas id="dailyCasesLine"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cumulative Cases - Logarithmic</nb-card-header>
+                <nb-card-body id="dailyCasesLog-container">
+                    <div><canvas id="dailyCasesLog"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cumulative Deaths - Linear</nb-card-header>
+                <nb-card-body id="dailyDeathsLine-container">
+                    <div><canvas id="dailyDeathsLine"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cumulative Deaths - Logarithmic</nb-card-header>
+                <nb-card-body id="dailyDeathsLog-container">
+                    <div><canvas id="dailyDeathsLog"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cumulative Recoveries - Linear</nb-card-header>
+                <nb-card-body id="dailyRecoveredLine-container">
+                    <div><canvas id="dailyRecoveredLine"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card status="primary" class="cbg">
+                <nb-card-header class="h4">Cumulative Recoveries - Logarithmic</nb-card-header>
+                <nb-card-body id="dailyRecoveredLog-container">
+                    <div><canvas id="dailyRecoveredLog"></canvas></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
+</div>

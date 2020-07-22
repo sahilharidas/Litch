@@ -1,0 +1,50 @@
+#flag-img {
+    width: auto;
+    height: 1.5em;
+    vertical-align: bottom;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.stat {
+    display: flex;
+    text-align: center;
+    width: 25%;
+    margin: 2%;
+    justify-content: center;
+}
+
+.act {
+    display: flex;
+    text-align: center;
+    width: 40%;
+    margin: 2%;
+    justify-content: center;
+}
+
+.info {
+    color: #0095ff;
+}
+
+.danger {
+    color: #ff3d71;
+}
+
+.success {
+    color: hsl(160, 100%, 42%);
+}
+
+.pad-up {
+    margin-top: 20px;
+}
+
+.chart {
+    width: 40%;
+}
+
+.cbg {
+    background-color: #d9e4ff;
+}

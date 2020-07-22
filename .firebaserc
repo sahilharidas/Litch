@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tictact-ae6cc": {
+      "hosting": {
+        "Litch": [
+          "tictact-ae6cc"
+        ]
+      }
+    }
+  }
+}
