@@ -1,3 +1,6 @@
+<!-- displays cards showing local statistics on covid19 with graphs and in tabulated form
+    countries can be set using an autoComplete text field -->
+
 <nb-card>
     <nb-card-header><img src="{{ selectedCountry.countryInfo.flag }}"
         alt="flag" id="flag-img"> &nbsp; {{ selectedCountry.country | uppercase}} DATA
@@ -57,6 +60,9 @@
 
 <mat-divider class="pad-up"></mat-divider>
 <div class="center"><h6>{{ selectedCountry.tests | number }} tests done in {{ selectedCountry.country }}</h6></div>
+<mat-divider class="pad-up"></mat-divider>
+<div class="center"><h6>A naught means that local government has not yet reported the daily statistics</h6></div>
+<div class="center"><h6>Stay tuned for updates!</h6></div>
 
 <div class="pad-up" style="display: flex; justify-content: center;">
     <nb-card class="act" status="primary">

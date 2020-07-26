@@ -44,6 +44,7 @@ export class LocalComponent implements OnInit {
   }
 
   addCountries(): void {
+    // populates countries array using countries from API
     this.options = [];
     for (let c of this.countries) {
       this.options.push(c.country);
@@ -81,6 +82,7 @@ export class LocalComponent implements OnInit {
   }
 
   graphData(country: string, update: boolean = false): void {
+    // gets historical data by country from John-Hopkins University, data sourced every 10 minutes
     this.dataService.getCountriesHistory(country)
     .subscribe(data => {
       var skip = false;
@@ -98,10 +100,15 @@ export class LocalComponent implements OnInit {
           skip == true ? skip = false  : skip = true;
         }
         if (update) {
+          // changes data to be graphed on change in country
           this.updateGraph(this.graphs[0], this.countryHistX, this.countryCasesY);
           this.updateGraph(this.graphs[1], this.countryHistX, this.countryDeathsY);
           this.updateGraph(this.graphs[2], this.countryHistX, this.countryRecoveredY);
+          this.updateGraph(this.graphs[3], this.countryHistX, this.countryCasesY);
+          this.updateGraph(this.graphs[4], this.countryHistX, this.countryDeathsY);
+          this.updateGraph(this.graphs[5], this.countryHistX, this.countryRecoveredY);
         } else {
+          // draws initial graphs based on default country
           this.drawGraph('dailyCasesLine', this.countryCasesY, [0, 149, 255], 'linear');
           this.drawGraph('dailyDeathsLine', this.countryDeathsY, [255, 61, 113], 'linear');
           this.drawGraph('dailyRecoveredLine', this.countryRecoveredY, [0, 214, 143], 'linear');
@@ -112,6 +119,7 @@ export class LocalComponent implements OnInit {
     });
   }
 
+  // graph template using Chartjs
   drawGraph(id: string, yData: number[], [r, g, b]: number[], type: string): void {
     var ctx = document.getElementById(id);
     var graph  = new Chart(ctx, {
@@ -147,6 +155,7 @@ export class LocalComponent implements OnInit {
     this.graphs.push(graph);
   }
 
+  // updates graphing data given x and y axis values
   updateGraph(chart: Chart, xData: string[], yData: number[]): void {
     chart.data.labels = xData;
     chart.data.datasets[0].data = yData;

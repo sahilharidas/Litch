@@ -1,3 +1,6 @@
+<!-- displays cards showing global statistics on covid19 with graphs and in tabulated form 
+    graphs can be switched to linear or logarithmic using flip cards-->
+
 <nb-card>
     <nb-card-header>COVID19 PANDEMIC</nb-card-header>
 </nb-card>
@@ -91,7 +94,7 @@
             <nb-card status="primary" class="cbg">
                 <nb-card-header class="h4">Cumulative Cases - Linear</nb-card-header>
                 <nb-card-body>
-                    <div><canvas id="dailyCasesGlobalLine"></canvas></div>
+                    <div><canvas id="cumCasesGlobalLine"></canvas></div>
                 </nb-card-body>
             </nb-card>
         </nb-card-front>
@@ -99,7 +102,7 @@
             <nb-card status="primary" class="cbg">
                 <nb-card-header class="h4">Cumulative Cases - Logarithmic</nb-card-header>
                 <nb-card-body>
-                    <div><canvas id="dailyCasesGlobalLog"></canvas></div>
+                    <div><canvas id="cumCasesGlobalLog"></canvas></div>
                 </nb-card-body>
             </nb-card>
         </nb-card-back>
@@ -109,7 +112,7 @@
             <nb-card status="primary" class="cbg">
                 <nb-card-header class="h4">Cumulative Deaths - Linear</nb-card-header>
                 <nb-card-body>
-                    <div><canvas id="dailyDeathsGlobalLine"></canvas></div>
+                    <div><canvas id="cumDeathsGlobalLine"></canvas></div>
                 </nb-card-body>
             </nb-card>
         </nb-card-front>
@@ -117,7 +120,7 @@
             <nb-card status="primary" class="cbg">
                 <nb-card-header class="h4">Cumulative Deaths - Logarithmic</nb-card-header>
                 <nb-card-body>
-                    <div><canvas id="dailyDeathsGlobalLog"></canvas></div>
+                    <div><canvas id="cumDeathsGlobalLog"></canvas></div>
                 </nb-card-body>
             </nb-card>
         </nb-card-back>
@@ -127,7 +130,7 @@
             <nb-card status="primary" class="cbg">
                 <nb-card-header class="h4">Cumulative Recoveries - Linear</nb-card-header>
                 <nb-card-body>
-                    <div><canvas id="dailyRecoveredGlobalLine"></canvas></div>
+                    <div><canvas id="cumRecoveredGlobalLine"></canvas></div>
                 </nb-card-body>
             </nb-card>
         </nb-card-front>
@@ -135,7 +138,7 @@
             <nb-card status="primary" class="cbg">
                 <nb-card-header class="h4">Cumulative Recoveries - Logarithmic</nb-card-header>
                 <nb-card-body>
-                    <div><canvas id="dailyRecoveredGlobalLog"></canvas></div>
+                    <div><canvas id="cumRecoveredGlobalLog"></canvas></div>
                 </nb-card-body>
             </nb-card>
         </nb-card-back>

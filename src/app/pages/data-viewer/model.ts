@@ -1,3 +1,5 @@
+// classes to extract relevant attributes from API request
+
 export class Country {
 
     updated: string;
