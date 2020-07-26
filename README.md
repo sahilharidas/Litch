@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Quick Start
 
 The easiest way to view this project is using this link: https://tictact-ae6cc.web.app/
+If you've recently viewed the web app, in order to view the latest version, trying clearing your cache or re-opening the link in a new tab. Refreshing doesn't always work!
 
 ## Development server
 
