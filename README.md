@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
 
+## About
+
+Litch is a Covid19 statistical analysis tool that summarises and displays useful information on cases both globally and countrywise. It provides helpful tables and graphs for an easy way to visualise the spread of the virus. The API used gathers information from JHUCSSE and Worldometers and is available at disease.sh.
+
 ## Quick Start
 
 The easiest way to view this project is using this link: https://tictact-ae6cc.web.app/
